@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/LaTele" version="1.0.0" viewmodes="maximized">
+   <tizen:application id="SFK9q6aqSG.LaTeleTizen" package="SFK9q6aqSG" required_version="2.3"></tizen:application>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="assets/favicon/favicon-16x16.png"/>
+    <name>La Tele</name>
+    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:profile name="tv"/>
+</widget>
