@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://tudominio.cl/M3U" version="1.0.0" viewmodes="fullscreen">
+   <tizen:application id="SFK9q6aqSG.LaTeleTizen" package="SFK9q6aqSG" required_version="2.3"></tizen:application>
+    <tizen:profile name="tv"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>Tizen IPTV Final</name>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <access origin="*" subdomains="true"/>
+</widget>

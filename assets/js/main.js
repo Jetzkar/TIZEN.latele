@@ -59,7 +59,10 @@ BOTON_ALTERNAR_CONTAINER_BOTONES_CANALES.addEventListener('click', () => {
 
 INPUT_FILTRADO_CANALES.addEventListener('input', filtro);
 
-setVideojsLang(window.videojs);
+// ESCUDO PROTECTOR PARA VIDEOJS (Evita que la app muera dejando la lista vacía)
+if (typeof window !== 'undefined' && window.videojs) {
+    try { setVideojsLang(window.videojs); } catch(e) { console.warn(e); }
+}
 
 fetchCanalesPrincipales();
 fetchCanalesSecundarios();
@@ -75,10 +78,15 @@ try {
         tizen.tvinputdevice.registerKey('ChannelDown');
     }
 } catch (e) {
-    console.warn("No se pudieron registrar las teclas en Tizen");
+    console.warn("Tizen keys no registradas (ignorar en PC)");
 }
 
 window.addEventListener('keydown', (e) => {
+    // PREVENIR SCROLL INFINITO si presionas las flechas del teclado
+    if([38, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+
     // 427 es CH+ (Arriba), 428 es CH- (Abajo)
     if (e.keyCode === 427 || e.keyCode === 428) {
         const direccion = e.keyCode === 427 ? 1 : -1;
@@ -103,4 +111,4 @@ window.addEventListener('keydown', (e) => {
 
         botones[index].click();
     }
-});
+}, { passive: false });

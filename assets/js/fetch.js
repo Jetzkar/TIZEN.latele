@@ -1,6 +1,5 @@
 import { TEXTO_CARGANDO, URL_JSON_CANALES_PRINCIPAL, URL_M3U_CANALES_IPTV } from './config.js';
 import { M3U_A_JSON } from './m3u-parser.js';
-// IMPORTAMOS crearAvPlay en lugar de crearVideoJs
 import { crearFragmentCanal, crearAvPlay } from './canal.js'; 
 import { limpiarTransmisionActiva } from './ui-utils.js';
 import { CONTAINER_BOTONES_CANALES_PRINCIPAL, CONTAINER_BOTONES_CANALES_SECUNDARIOS, CONTAINER_TRANSMISION_ACTIVA, SPAN_NOMBRE_OVERLAY, TEXTO_DETRAS_CONTAINER_TRANSMISION_ACTIVA } from './main.js';
@@ -23,8 +22,8 @@ export function fetchCanalesPrincipales() {
           BOTON_PARA_CANAL.innerHTML = nombre;
           BOTON_PARA_CANAL.addEventListener('click', () => {
             
-            // DETENER AVPLAY AL CAMBIAR CANAL
-            try { if(webapis && webapis.avplay) webapis.avplay.stop(); } catch(e) {}
+            // ESCUDO: Solo detener si existe webapis
+            try { if(typeof webapis !== 'undefined' && webapis.avplay) webapis.avplay.stop(); } catch(e) {}
 
             if (BOTON_PARA_CANAL.classList.contains('boton-activo')) {
               limpiarTransmisionActiva();
@@ -44,7 +43,7 @@ export function fetchCanalesPrincipales() {
       }
       CONTAINER_BOTONES_CANALES_PRINCIPAL.append(FRAGMENT_CONTENEDOR_BOTONES_LISTA_PRINCIPAL);
     })
-    .catch(error => console.error('Error fetching data:', error));
+    .catch(error => console.error('Error fetching data principal:', error));
 }
 
 export function fetchCanalesSecundarios() {
@@ -62,8 +61,8 @@ export function fetchCanalesSecundarios() {
         BOTON_PARA_CANAL.innerHTML = nombre;
         BOTON_PARA_CANAL.addEventListener('click', () => {
 
-          // DETENER AVPLAY AL CAMBIAR CANAL
-          try { if(webapis && webapis.avplay) webapis.avplay.stop(); } catch(e) {}
+          // ESCUDO: Solo detener si existe webapis
+          try { if(typeof webapis !== 'undefined' && webapis.avplay) webapis.avplay.stop(); } catch(e) {}
 
           if (BOTON_PARA_CANAL.classList.contains('boton-activo')) {
             limpiarTransmisionActiva();
@@ -73,12 +72,12 @@ export function fetchCanalesSecundarios() {
             TEXTO_DETRAS_CONTAINER_TRANSMISION_ACTIVA.innerHTML = TEXTO_CARGANDO;
             const FRAGMENT_CANAL = document.createDocumentFragment();
             
-            // USAR crearAvPlay en canales secundarios
+            // Llama a crearAvPlay (en el PC solo creará un bloque vacío, en la TV reproducirá)
             FRAGMENT_CANAL.append(crearAvPlay(señales.m3u8_url[0]));
             
             CONTAINER_TRANSMISION_ACTIVA.append(FRAGMENT_CANAL);
-            SPAN_NOMBRE_OVERLAY.innerHTML = `${nombre} | IPTV-ORG`;
-            SPAN_NOMBRE_OVERLAY.title = 'Ir a lista m3u iptv-org';
+            SPAN_NOMBRE_OVERLAY.innerHTML = `${nombre} | IPTV`;
+            SPAN_NOMBRE_OVERLAY.title = 'Ir a lista m3u';
             SPAN_NOMBRE_OVERLAY.href = URL_M3U_CANALES_IPTV;
             document.querySelector('.dropdown-señales').classList.add('hide');
           }
