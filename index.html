@@ -6,11 +6,12 @@
     <base target="_blank">
     <link rel="stylesheet" href="https://unpkg.com/modern-normalize@1.1.0/modern-normalize.css">
     <link rel="stylesheet" href="assets/css/style.css" />
-    <style>
-    body, html { overflow: hidden !important; height: 100vh !important; }
-</style>
     <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
     <script defer src="https://unpkg.com/video.js/dist/video.min.js"></script>
+
+    <style>
+        body, html { overflow: hidden !important; height: 100vh !important; }
+    </style>
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -19,10 +20,30 @@
     <meta name="theme-color" content="#051320" />
 
     <title>La tele</title>
+    <meta name="title" content="La tele">
+    <meta name="description" content="Canales de Chile a un toque.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alplox.github.io/la-tele/">
+    <meta property="og:title" content="La tele">
+    <meta property="og:description" content="Canales de Chile a un toque.">
+    <meta property="og:image" content="assets/img/Previews/shots_la_tele_v0-10.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://alplox.github.io/la-tele/">
+    <meta property="twitter:title" content="La tele">
+    <meta property="twitter:description" content="Canales de Chile a un toque.">
+    <meta property="twitter:image" content="assets/img/Previews/shots_la_tele_v0-10.jpg">
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+        const el = document.createElement('pwa-update');
+        el.swpath = "pwabuilder-sw.js"
+        el.updatemessage = "Nueva versión disponible";
+        el.offlineToastDuration = 2000;
+        document.body.appendChild(el);
+    </script>
     <script src="https://unpkg.com/akar-icons-fonts"></script>
     
     <script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>
-    
+
     <script src="assets/js/main.js" type="module"></script>
 </head>
 
@@ -96,5 +117,47 @@
         </footer>
     </section>
    
-    </body>
+    <div class="modal" id="modal-legal" tabindex="-1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><i class="ai-cross" tabindex="0"></i></span>
+                <h1>Descargo de responsabilidad</h1>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>"la tele" es un proyecto de código abierto gratuito que permite gestionar canales de televisión
+                        de libre acceso por Internet.</li>
+                    <li>"la tele" no decodifica transmisiones. Los enlaces que figuran en este proyecto son procesados
+                        desde diferentes sitios públicos con libre distribución/acceso.</li>
+                    <li>"la tele" no posee ningún tipo de monetización, en consecuencia, no se lucra de ninguna forma o
+                        medio.</li>
+                    <li>El proyecto cuenta con reproductores multimedia, los que no corresponden a una retransmisión
+                        de los canales ni implica la decodificación de éstos.</li>
+                    <li>No se es propietario, ni responsable de ninguno de los contenidos emitidos por parte de cada
+                        canal.</li>
+                    <li>"la tele" no ofrece canales de pago bajo ninguna modalidad.</li>
+                    <li>En este proyecto no se almacena ninguna transmisión.</li>
+                    <li>El proyecto tanto como sus mantenedores no asumen responsabilidad alguna respecto a los
+                        derechos de propiedad
+                        intelectual que se vean infringidos por un tercero o por cualquier usuario.</li>
+                    <li>El usuario por defecto tiene la capacidad de dirigirse al sitio oficial de cada transmisión
+                        en todo
+                        momento.</li>
+                    <li>Si posees los derechos de algún canal y deseas que sea retirado, <a
+                            href="https://github.com/Alplox/json-teles/issues" rel="nofollow noreferrer"> contáctame <i class="ai-link-out"></i></a>.
+                    </li>
+                </ul>
+                <p>&mdash; Si quieres conocer el origen de cada livestream visita el <a
+                    href="https://github.com/Alplox/la-tele#listado-canales-disponibles-junto-a-su-fuente"
+                    rel="noopener nofollow noreferrer">repositorio
+                    GitHub <i class="ai-github-fill"></i><i class="ai-link-out"></i></a> de la página.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" role="button" class="boton boton-modal-entendido sombra"
+                id="boton-modal-entendido">Entendido</button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
